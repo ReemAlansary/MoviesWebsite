@@ -127,117 +127,105 @@ app.get('/horror',(req,res)=>{
 
 //2- Names
 app.get('/godfather',(req,res)=>{
-    
     if(req.session.user == null){
         res.redirect('/');
     }else{
-        if(movieExist(req.session.user,'godfather')){
-            res.render('godfather',{vt:"f"})
-        }else if(!movieExist(req.session.user,'godfather')){
-            res.render('godfather',{vt:""})
-        }
+        res.render('godfather',{error:""})
     }
 });
 
 app.post('/godfather',(req,res)=>{
-    
-    addWatchList(req.session.user,'godfather');
-    res.render('godfather',{vt:"f"});
+    if(movieExist(req.session.user,'godfather')){
+        res.render('godfather',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'godfather')){
+        addWatchList(req.session.user,'godfather');
+        res.render('godfather',{error:'The movie is added to the wishlist successfully'});
+    }
 });
 
 app.get('/godfather2',(req,res)=>{
-    
     if(req.session.user == null){
         res.redirect('/');
     }else{
-        if(movieExist(req.session.user,'godfather2')){
-            res.render('godfather2',{vt:"f"})
-        }else if(!movieExist(req.session.user,'godfather2')){
-            res.render('godfather2',{vt:""})
-        }
+        res.render('godfather2',{error:""})
     }
 });
 
 app.post('/godfather2',(req,res)=>{
-    
-    addWatchList(req.session.user,'godfather2');
-    res.render('godfather2',{vt:"f"});
+    if(movieExist(req.session.user,'godfather2')){
+        res.render('godfather2',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'godfather2')){
+        addWatchList(req.session.user,'godfather2');
+        res.render('godfather2',{error:'The movie is added to the wishlist successfully'});
+    }
 });
 
 app.get('/scream',(req,res)=>{
-    
     if(req.session.user == null){
         res.redirect('/');
     }else{
-        if(movieExist(req.session.user,'scream')){
-            res.render('scream',{vt:"f"})
-        }else if(!movieExist(req.session.user,'scream')){
-            res.render('scream',{vt:""})
-        }
+        res.render('scream',{error:""})
     }
 });
 
 app.post('/scream',(req,res)=>{
-    
-    addWatchList(req.session.user,'scream');
-    res.render('scream',{vt:"f"});
-});
-
-app.get('/fightclub',(req,res)=>{
-    
-    if(req.session.user == null){
-        res.redirect('/');
-    }else{
-        if(movieExist(req.session.user,'fightclub')){
-            res.render('fightclub',{vt:"f"})
-        }else if(!movieExist(req.session.user,'fightclub')){
-            res.render('fightclub',{vt:""})
-        }
+    if(movieExist(req.session.user,'scream')){
+        res.render('scream',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'scream')){
+        addWatchList(req.session.user,'scream');
+        res.render('scream',{error:'The movie is added to the wishlist successfully'});
     }
 });
 
-app.post('/fightclub',(req,res)=>{
-    
-    addWatchList(req.session.user,'fightclub');
-    res.render('fightclub',{vt:"f"});
-});
-
 app.get('/conjuring',(req,res)=>{
-    
     if(req.session.user == null){
         res.redirect('/');
     }else{
-        if(movieExist(req.session.user,'conjuring')){
-            res.render('conjuring',{vt:"f"})
-        }else if(!movieExist(req.session.user,'conjuring')){
-            res.render('conjuring',{vt:""})
-        }
+        res.render('conjuring',{error:""})
     }
 });
 
 app.post('/conjuring',(req,res)=>{
-    
-    addWatchList(req.session.user,'conjuring');
-    res.render('conjuring',{vt:"f"});
+    if(movieExist(req.session.user,'conjuring')){
+        res.render('conjuring',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'conjuring')){
+        addWatchList(req.session.user,'conjuring');
+        res.render('conjuring',{error:'The movie is added to the wishlist successfully'});
+    }
 });
 
 app.get('/darkknight',(req,res)=>{
-    
     if(req.session.user == null){
         res.redirect('/');
     }else{
-        if(movieExist(req.session.user,'darkknight')){
-            res.render('darkknight',{vt:"f"})
-        }else if(!movieExist(req.session.user,'darkknight')){
-            res.render('darkknight',{vt:""})
-        }
+        res.render('darkknight',{error:""})
     }
 });
 
 app.post('/darkknight',(req,res)=>{
-   // console.log(req.session.user)
-    addWatchList(req.session.user,'darkknight');
-    res.render('darkknight',{vt:"f"});
+    if(movieExist(req.session.user,'darkknight')){
+        res.render('darkknight',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'darkknight')){
+        addWatchList(req.session.user,'darkknight');
+        res.render('darkknight',{error:'The movie is added to the wishlist successfully'});
+    }
+});
+
+app.get('/fightclub',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/');
+    }else{
+        res.render('fightclub',{error:""})
+    }
+});
+
+app.post('/fightclub',(req,res)=>{
+    if(movieExist(req.session.user,'fightclub')){
+        res.render('fightclub',{error:'The movie is already in the wishlist'});
+    }else if(!movieExist(req.session.user,'fightclub')){
+        addWatchList(req.session.user,'fightclub');
+        res.render('fightclub',{error:'The movie is added to the wishlist successfully'});
+    }
 });
 
 //V- Watchlist
@@ -339,7 +327,7 @@ function loadMov(){
 function searchMovie(key){
     let res = [];
     let moviesA = loadMov();
-    if(key == ""){
+    if(key == "" || key == " "){
        return res;
     }
     else{
