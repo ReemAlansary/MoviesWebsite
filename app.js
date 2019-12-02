@@ -29,10 +29,13 @@ app.listen(port, () => console.log("Server is running on port 3000"));
 //get and post request for each webpage
 //I-Registeration
 app.get('/register',(req,res) => {
-    res.render('registration',{
-        error:"",
-        success: ""
-    });
+    if(req.session.user != null)
+        res.redirect('/home');
+    else
+        res.render('registration',{
+            error:"",
+            success: ""
+        });
 });
 
 app.post('/register',(req,res) =>{
@@ -65,7 +68,10 @@ app.post('/register',(req,res) =>{
 
 //II- Login
 app.get('/',(req,res) => {
-    res.render('login',{error:""});
+    if(req.session.user == null) 
+        res.render('login',{error:""});
+    else
+        res.redirect('/home');
 });
 
 app.post('/',(req,res) =>{
@@ -136,10 +142,10 @@ app.get('/godfather',(req,res)=>{
 
 app.post('/godfather',(req,res)=>{
     if(movieExist(req.session.user,'godfather')){
-        res.render('godfather',{error:'The movie is already in the wishlist'});
+        res.render('godfather',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'godfather')){
         addWatchList(req.session.user,'godfather');
-        res.render('godfather',{error:'The movie is added to the wishlist successfully'});
+        res.render('godfather',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
@@ -153,10 +159,10 @@ app.get('/godfather2',(req,res)=>{
 
 app.post('/godfather2',(req,res)=>{
     if(movieExist(req.session.user,'godfather2')){
-        res.render('godfather2',{error:'The movie is already in the wishlist'});
+        res.render('godfather2',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'godfather2')){
         addWatchList(req.session.user,'godfather2');
-        res.render('godfather2',{error:'The movie is added to the wishlist successfully'});
+        res.render('godfather2',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
@@ -170,10 +176,10 @@ app.get('/scream',(req,res)=>{
 
 app.post('/scream',(req,res)=>{
     if(movieExist(req.session.user,'scream')){
-        res.render('scream',{error:'The movie is already in the wishlist'});
+        res.render('scream',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'scream')){
         addWatchList(req.session.user,'scream');
-        res.render('scream',{error:'The movie is added to the wishlist successfully'});
+        res.render('scream',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
@@ -187,10 +193,10 @@ app.get('/conjuring',(req,res)=>{
 
 app.post('/conjuring',(req,res)=>{
     if(movieExist(req.session.user,'conjuring')){
-        res.render('conjuring',{error:'The movie is already in the wishlist'});
+        res.render('conjuring',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'conjuring')){
         addWatchList(req.session.user,'conjuring');
-        res.render('conjuring',{error:'The movie is added to the wishlist successfully'});
+        res.render('conjuring',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
@@ -204,10 +210,10 @@ app.get('/darkknight',(req,res)=>{
 
 app.post('/darkknight',(req,res)=>{
     if(movieExist(req.session.user,'darkknight')){
-        res.render('darkknight',{error:'The movie is already in the wishlist'});
+        res.render('darkknight',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'darkknight')){
         addWatchList(req.session.user,'darkknight');
-        res.render('darkknight',{error:'The movie is added to the wishlist successfully'});
+        res.render('darkknight',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
@@ -221,10 +227,10 @@ app.get('/fightclub',(req,res)=>{
 
 app.post('/fightclub',(req,res)=>{
     if(movieExist(req.session.user,'fightclub')){
-        res.render('fightclub',{error:'The movie is already in the wishlist'});
+        res.render('fightclub',{error:'The movie is already in the watchlist'});
     }else if(!movieExist(req.session.user,'fightclub')){
         addWatchList(req.session.user,'fightclub');
-        res.render('fightclub',{error:'The movie is added to the wishlist successfully'});
+        res.render('fightclub',{error:'The movie is added to the watchlist successfully'});
     }
 });
 
