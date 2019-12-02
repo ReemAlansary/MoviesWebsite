@@ -5,6 +5,7 @@ const fs = require('fs');
 const bodyparser = require('body-parser');
 var session = require('express-session');
 
+var port = process.env.PORT || 3000;
 
 //Creating a session
 app.use(session({
@@ -23,7 +24,7 @@ app.use(express.static('public'));
 app.use(bodyparser.urlencoded({ extended: false }));
 
 //listening to port number
-app.listen(3000, () => console.log("Server is running on port 3000"));
+app.listen(port, () => console.log("Server is running on port 3000"));
 
 //get and post request for each webpage
 //I-Registeration
